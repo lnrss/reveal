@@ -9,6 +9,7 @@ import AuthNavigation from "./AuthNavigation";
 
 StatusBar.setBarStyle('light-content', true);
 
+//? Import des fonts
 const fetchFonts = () => {
   return Font.loadAsync({
     'msrB': require('./assets/fonts/montserrat/Montserrat-Bold.ttf'),

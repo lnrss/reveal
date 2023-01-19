@@ -12,7 +12,7 @@ import { db } from '../firebase';
 const HomeScreen = ({navigation}) => {
   const [posts, setPosts] = useState([])
   useEffect(()=>{
-    db.collectionGroup('posts').orderBy('createdAt', 'desc').onSnapshot(snapshot=>{
+    db.collectionGroup('posts').onSnapshot(snapshot=>{
       setPosts(snapshot.docs.map(doc=>doc.data()))
     })
   }, [])

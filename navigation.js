@@ -8,6 +8,7 @@ import SignupScreen from './screens/SignupScreen'
 
 const Stack = createStackNavigator()
 
+//? Masquer l'en-tête de l'écran
 const screenOptions = {
     headerShown: false,
 }

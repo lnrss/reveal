@@ -33,7 +33,7 @@ const FormikPostUploader = ({navigation}) => {
         getUsername()
     }, [])
 
-    const uploadPostToFirebase = (imageUrl, caption) => {
+    const uploadPostToFirebase = (imageUrl, caption, address) => {
         const unsubscribe = db
         .collection('users')
         .doc(firebase.auth().currentUser.email)
@@ -45,16 +45,17 @@ const FormikPostUploader = ({navigation}) => {
             owner_uid: firebase.auth().currentUser.uid,
             owner_email: firebase.auth().currentUser.email,
             caption: caption,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            address: address
         }).then(() => navigation.goBack())
         return unsubscribe
     }
 
   return (
     <Formik 
-        initialValues={{caption: '', imageUrl: ''}} 
+        initialValues={{caption: '', imageUrl: '', address: ''}} 
         onSubmit={(values) => {
-            uploadPostToFirebase(values.imageUrl, values.caption)
+            uploadPostToFirebase(values.imageUrl, values.caption, values.address)
         }} 
         validationSchema={uploadPostSchema}
         validateOnMount={true}
@@ -78,7 +79,7 @@ const FormikPostUploader = ({navigation}) => {
             </View>
             <TextInput
                 onChange={e => setThumbnailUrl(e.nativeEvent.text)}  
-                style={{color: '#fff', fontSize: 16, marginBottom: 40}}
+                style={{color: '#fff', fontSize: 16}}
                 placeholder="Url de l'image" 
                 placeholderTextColor='gray'
                 onChangeText={handleChange('imageUrl')}
@@ -86,6 +87,15 @@ const FormikPostUploader = ({navigation}) => {
                 value={values.imageUrl}
                 keyboardAppearance='dark'
             />
+            <TextInput 
+                        style={{color: '#fff', fontSize: 16, marginBottom: 40}}
+                        placeholder='Lieu' 
+                        placeholderTextColor='gray' 
+                        onChangeText={handleChange('address')}
+                        onBlur={handleBlur('address')}
+                        value={values.address} 
+                        keyboardAppearance='dark'
+                    />
             {errors.imageUrl && (
                 <Text style={{fontSize: 14, color: '#fff', fontFamily: 'rbtB'}}>
                     {errors.imageUrl}
