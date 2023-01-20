@@ -6,4 +6,4 @@ Bonne visite ! 💒
 
 ---
 
-<i style="opacity: .5">Projet personnel réalisé en React Native (lib: Formik & Yup) et Firebase</i>
+<i style="opacity: .5">Projet réalisé en React Native (lib: Formik & Yup) et Firebase</i>
